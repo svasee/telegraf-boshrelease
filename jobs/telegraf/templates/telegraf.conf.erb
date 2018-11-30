@@ -6,7 +6,6 @@
 <% end %>
 
 [[outputs.influxdb]]
-  urls = ["<%= p("influxdb.url") %>"]
   database = "<%= p("influxdb.database") %>"
   username = "<%= p("influxdb.username") %>"
   password = "<%= p("influxdb.password") %>"
@@ -23,6 +22,9 @@
 
 [[inputs.mem]]
 
+[[inputs.procstat]]
+  pattern = "(consul|vault)"
+
 [[inputs.processes]]
 
 [[inputs.swap]]
@@ -30,3 +32,16 @@
 [[inputs.system]]
 
 [[inputs.net]]
+
+[[inputs.statsd]]
+  protocol = "udp"
+  service_address = ":8125"
+  delete_gauges = true
+  delete_counters = true
+  delete_sets = true
+  delete_timings = true
+  percentiles = [90]
+  metric_separator = "."
+  parse_data_dog_tags = true
+  allowed_pending_messages = 10000
+  percentile_limit = 1000

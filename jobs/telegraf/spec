@@ -14,7 +14,6 @@ properties:
       Key-value tags to attach to every emitted metric. By default, 'bosh-job'
       and 'bosh-deployment' tags will automatically be added.
     default: {}
-    example: {datacenter: dc1}
 
   influxdb.url:
     description: |
