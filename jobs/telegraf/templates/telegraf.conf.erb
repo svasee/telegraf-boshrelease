@@ -6,10 +6,12 @@
 <% end %>
 
 [[outputs.influxdb]]
+  urls = ["<%= p("influxdb.url") %>"]
   database = "<%= p("influxdb.database") %>"
   username = "<%= p("influxdb.username") %>"
   password = "<%= p("influxdb.password") %>"
   insecure_skip_verify = <%= p("influxdb.insecure_skip_verify") %>
+  retention_policy = "autogen"
 
 [[inputs.cpu]]
 

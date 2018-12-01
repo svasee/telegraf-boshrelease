@@ -1,6 +1,7 @@
 ---
 final_name: telegraf
 blobstore:
-  provider: s3
+  provider: local
   options:
-    bucket_name: telegraf-release-blobs
+    blobstore_path: /tmp/telegraf
+final_name: telegraf
