@@ -14,6 +14,13 @@ Commands to compile:
  * Commit the changes
  * Create a release
    bosh create-release --tarball /tmp/my-telegraf.tgz
-   bosh create-release --final
+
+Verify the tar file by extracting it and make sure it have the modified changes.
+
+   bosh create-release --version 5.3 --final
+
+   git add releases/telegraf/telegraf-5.3.yml
+   git commit -a -m "Creating a final release 5.3"
+   bosh create-release releases/telegraf/telegraf-5.3.yml --tarball my-telegraf.tgz
 
 * Upload the /tmp/my-telegraf.tgz to bosh
