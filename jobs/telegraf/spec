@@ -38,7 +38,7 @@ properties:
       Skip SSL verification when emitting to InfluxDB.
     default: false
   
-  influxdb.retention_policy
+  influxdb.retention_policy:
     description: |
       InfluxDB database retention policy
     default: autogen
