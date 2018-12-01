@@ -5,21 +5,29 @@
   <%= k %> = "<%= v %>"
 <% end %>
 
+[agent]
+  interval = "1m"
+  flush_interval = "1m"
+  flush_jitter = "15s"
+
 [[outputs.influxdb]]
   urls = ["<%= p("influxdb.url") %>"]
   database = "<%= p("influxdb.database") %>"
   username = "<%= p("influxdb.username") %>"
   password = "<%= p("influxdb.password") %>"
   insecure_skip_verify = <%= p("influxdb.insecure_skip_verify") %>
-  retention_policy = "autogen"
+  retention_policy = "<%= p("influxdb.retention_policy") %>" 
 
 [[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  collect_cpu_time = false
 
 [[inputs.disk]]
   ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
 
 [[inputs.diskio]]
-
+  devices = ["sda", "sdb", "sdc", "xvda", "xvdb", "xvdc"]
 [[inputs.kernel]]
 
 [[inputs.mem]]
@@ -34,6 +42,12 @@
 [[inputs.system]]
 
 [[inputs.net]]
+  interfaces = ["all", "eth0"]
+
+[[inputs.consul]]
+  address = "localhost:8500"
+  scheme = "https"
+  insecure_skip_verify = true
 
 [[inputs.statsd]]
   protocol = "udp"
